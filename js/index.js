@@ -1,12 +1,17 @@
 // javascript for index.html
 container = document.querySelector(".blogs");
-const renderPosts = async () => {
+const searchForm = document.querySelector(".search")
+
+const renderPosts = async (term) => {
     //defaul sorting posts id by id but for any type of sort we can do the next line
 //   let uri = "http://localhost:3000/posts";
     //for sort by any different properties we can use this one below: ?_sort=key
 //   let uri = "http://localhost:3000/posts?_sort=likes";
 // and also for sorting reverse we can use this: &_order=desc mean descending
   let uri = "http://localhost:3000/posts?_sort=likes&_order=desc";
+  if (term) {
+    uri += `&q=${term}` // &q=exp => it search exp in all json files
+  }
   const res = await fetch(uri);
   const posts = await res.json();
   let template = "";
@@ -23,4 +28,9 @@ const renderPosts = async () => {
   container.innerHTML = template;
 };
 
+
+searchForm.addEventListener("submit", (e)=> {
+  e.preventDefault() //it dosent refresh the page 
+  renderPosts(searchForm.term)
+})
 window.addEventListener("DOMContentLoaded", () => renderPosts());
