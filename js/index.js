@@ -1,4 +1,5 @@
 // javascript for index.html
+//https://github.com/iamshaunjp/json-server-tutorial ninja mdn
 container = document.querySelector(".blogs");
 const searchForm = document.querySelector(".search")
 
