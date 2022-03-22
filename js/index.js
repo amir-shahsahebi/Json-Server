@@ -29,8 +29,8 @@ const renderPosts = async (term) => {
 };
 
 
-searchForm.addEventListener("submit", (e)=> {
+searchForm.addEventListener("submit", (e)=> { // it active when press enter
   e.preventDefault() //it dosent refresh the page 
-  renderPosts(searchForm.term)
+  renderPosts(searchForm.term.value.trim())
 })
 window.addEventListener("DOMContentLoaded", () => renderPosts());
